@@ -1,0 +1,37 @@
+# 不要使用这个
+
+# 第一步
+conda env create -f lerobot_v3t.yaml
+
+# 第二步
+pip install -r requirements.txt # 在目标服务器安装 pip 包
+
+
+############################################################################################
+打包过程：
+(lerobot) F:\robot\配置环境lerobot_v3t>conda pack -n lerobot --ignore-editable-packages -o lerobot_t.tar.gz
+D:\BaiduNetdiskDownload\Anaconda\Lib\site-packages\conda_pack\core.py:15: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Collecting packages...
+Packing environment at 'D:\\BaiduNetdiskDownload\\Anaconda\\envs\\lerobot' to 'lerobot_t.tar.gz'
+[########################################] | 100% Completed |  9min 34.3s
+
+(lerobot) F:\robot\配置环境lerobot_v3t>
+############################################################################################
+
+# 使用这个！！！！！！！
+
+步骤 1：解压并修复路径
+
+在目标服务器上解压文件到 Conda 的 envs 目录，并修复路径：
+
+mkdir -p ~/miniconda3/envs/lerobot_t
+tar -xzvf lerobot_t.tar.gz -C ~/miniconda3/envs/lerobot_t
+source ~/miniconda3/envs/lerobot_t/bin/conda-unpack
+
+步骤 2：验证迁移结果
+
+激活环境并检查是否成功：
+
+conda activate lerobot_t
+conda list
